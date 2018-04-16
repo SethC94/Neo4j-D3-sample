@@ -1,0 +1,97 @@
+/*styles for contacts page*/
+#contact_table {
+
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#contact_table td, th {
+    border: 3px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#contact_table tr:nth-child(even) {
+    background-color: #ddd;
+}
+#first_letter {
+    color: #85BAA1
+    font-family: verdana;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+
+#contact_table tr:hover {
+  background-color: #CEEDDB;
+
+}
+
+#contact_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #3F51B5;
+    color: white;
+}
+#list_names th {
+    text-align: center;
+    font-family: verdana;
+    font-size: 20px;
+    border: 1px solid black;
+    width: 70px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#table_data td {
+  color: #544E61;
+  text-align: justify;
+  font-family: verdana;
+  font-size: 20px;
+  border: 1px solid black;
+  width: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+
+}
+
+/*styles for force graph page*/
+
+#force_graph {
+  border:1px solid #000000;
+  background-color: #ddd;
+}
+
+#search_bar input{
+  width: 130px;
+  height: 27px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+#search_bar input:focus{
+   width: 60%;
+   height: 30px;
+}
+
+#topnav button {
+  height: 33px;
+}
+
+#topnav h1{
+  height: 30px;
+  width: 75%;
+}
+
+#button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lan="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title>Marketing Force Graph</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+<body>
+
+  <h1 id="heading">Force Graph
+    <input id="search_bar" type="text" placeholder="Search Departments">
+    <button type="submit" id="btn_submit">Submit</button>
+      <script>
+
+      $(document).ready(function(){
+
+        $('#btn_submit').click(function(){
+          var inputText = $('#search_bar').val();
+          // alert(inputText);
+          updateCanvas(inputText)
+        });
+
+        function updateCanvas(org_name){
+          var response = $.ajax({
+              url:  'organizationsAPI/'+org_name,
+              dataType: "json",
+              async: false
+          }).responseText
+          console.log(response);
+
+          var graph = $.parseJSON(response);
+
+          var canvas = d3.select("#force_graph"),
+            width = canvas.attr("width"),
+            height = canvas.attr("height"),
+            // returns html/DOM element and applies it to The 2D Context
+            // which provides objects, methods, and properties to draw and
+            // manipulate graphics on a canvas drawing surface.
+            ctx = canvas.node().getContext("2d"),
+            r = 4,
+            color = d3.scaleOrdinal(d3.schemeCategory20),
+            simulation = d3.forceSimulation()
+              .force("x", d3.forceX(width/2))
+              .force("y", d3.forceY(height/2))
+              .force("collide", d3.forceCollide(r+1))
+              .force("charge", d3.forceManyBody()
+                .strength(-150))
+              .force("link", d3.forceLink()
+              // telling the link how to find the nodes
+                .id(function (d) { return d.name; }));
+
+
+
+          // assigns graph.nodes to simulation.nodes
+          simulation.nodes(graph.nodes);
+          // get the force first because thats what actually contains the variable "link"
+          simulation.force("link").links(graph.links);
+          simulation.on("tick", update);
+          canvas.call(d3.drag()
+                  .container(canvas.node())
+                  .subject(dragsubject)
+                  .on("start", dragstarted)
+                  .on("drag", dragged)
+                  .on("end", dragended));
+
+                  function update() {
+                      ctx.clearRect(0, 0, width, height);
+                      ctx.beginPath();
+                      ctx.globalAlpha = 0.3;
+                      ctx.strokeStyle = "#D32F2F";
+                      graph.links.forEach(drawLink);
+                      ctx.stroke();
+                      ctx.globalAlpha = 1.0;
+                      graph.nodes.forEach(drawNode);
+                    }
+
+                  function dragsubject() {
+                    return simulation.find(d3.event.x, d3.event.y);
+                    }
+
+                  function dragstarted() {
+                    if (!d3.event.active) simulation.alphaTarget(0.2).restart();
+                    d3.event.subject.fx = d3.event.subject.x;
+                    d3.event.subject.fy = d3.event.subject.y;
+                  }
+
+                  function dragged() {
+                    d3.event.subject.fx = d3.event.x;
+                    d3.event.subject.fy = d3.event.y;
+                  }
+
+                  function dragended() {
+                    if (!d3.event.active) simulation.alphaTarget(0);
+                    d3.event.subject.fx = null;
+                    d3.event.subject.fy = null;
+                    console.log(d3.event.subject.name);
+                    console.log(d3.event.subject.orgUnit);
+                  }
+
+                  function drawNode(d) {
+                    ctx.beginPath();
+                    ctx.fillStyle = color(d.party);
+                    ctx.moveTo(d.x, d.y);
+                    ctx.arc(d.x, d.y, r, 0, Math.PI*2);
+                    ctx.fill();
+                  }
+
+                  function drawLink(l) {
+                    ctx.moveTo(l.source.x, l.source.y);
+                    ctx.lineTo(l.target.x, l.target.y);
+                  }
+        }
+
+
+
+
+      });
+
+      </script>
+
+
+
+
+
+  <canvas id="force_graph" width="1260" height="550"></canvas>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <span></span>
+</body>
+</html>

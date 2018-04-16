@@ -1,0 +1,21 @@
+{
+  "name": "neo4j",
+  "version": "1.0.0",
+  "description": "Neo4j deliverable",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Seth Creasman",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "d3": "^5.0.0",
+    "ejs": "^2.4.2",
+    "express": "*",
+    "jquery": "^3.3.1",
+    "morgan": "*",
+    "neo4j-driver": "*",
+    "node": "^9.8.0"
+  }
+}

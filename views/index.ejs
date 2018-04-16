@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h2>Contacts</h2>
+<table id="contact_table">
+  <tr id="list_names">
+      <th>Names</th>
+      <th>Email Address</th>
+      <th>Employee Number</th>
+      <th>Telephone Numbers</th>
+  </tr>
+<% Object.keys(contactNames).forEach((letter)=> { %>
+    <tr id="first_letter" >
+        <td colspan="4">
+          <%= letter %>
+        </td>
+    </tr>
+    <% contactNames[letter].forEach((contact)=>{ %>
+      <tr id="table_data">
+        <td>
+          <%= contact.name.split(" ")[1] %>
+          <% console.log(contact.name.split(" ")[1]) %>
+        </td>
+        <td>
+          <%= contact.emailAddress %>
+        </td>
+        <td>
+          <%= contact.employeeNumber %>
+        </td>
+        <td id="contact_telephone_number">
+          <%= contact.telephoneNumber.split("+")[1] %>
+        </td>
+
+      </tr>
+    <% }) %>
+<% }) %>
+</table>
+</body>
+</html>
