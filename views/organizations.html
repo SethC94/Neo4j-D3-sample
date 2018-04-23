@@ -3,12 +3,12 @@
   <head>
     <link rel="stylesheet" href="styles.css">
     <meta charset="utf-8">
-    <title>Marketing Force Graph</title>
+    <title>Force Graph</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 <body>
 
-  <h1 id="heading">Force Graph
+  <h1 id="heading">Canvas Force Graph
     <input id="search_bar" type="text" placeholder="Search Departments">
     <button type="submit" id="btn_submit">Submit</button>
       <script>
@@ -27,9 +27,12 @@
               dataType: "json",
               async: false
           }).responseText
-          console.log(response);
+
 
           var graph = $.parseJSON(response);
+          var nodes = graph.nodes;
+          var links = graph.links;
+          console.log(nodes);
 
           var canvas = d3.select("#force_graph"),
             width = canvas.attr("width"),

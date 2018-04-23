@@ -1,0 +1,51 @@
+Sending build context to Docker daemon  74.74MB
+Step 1/7 : FROM node:9.8.0
+9.8.0: Pulling from library/node
+f2b6b4884fc8: Already exists
+4fb899b4df21: Already exists
+74eaa8be7221: Already exists
+2d6e98fe4040: Already exists
+452c06dec5fa: Already exists
+7b3c215894de: Already exists
+c2139be2d901: Pulling fs layer
+7c9b0e13f02b: Pulling fs layer
+7c9b0e13f02b: Verifying Checksum
+7c9b0e13f02b: Download complete
+c2139be2d901: Verifying Checksum
+c2139be2d901: Download complete
+c2139be2d901: Pull complete
+7c9b0e13f02b: Pull complete
+Digest: sha256:59aff2d9898e2b3d35d7656bf57bf61c2dcaedac58b8c3934b8963904d27c437
+Status: Downloaded newer image for node:9.8.0
+ ---> ec70562ad6f0
+Step 2/7 : WORKDIR /app
+Removing intermediate container 114a16d59ec5
+ ---> 1c952fb5bfaf
+Step 3/7 : COPY package.json /app
+ ---> 733b67830621
+Step 4/7 : RUN npm install
+ ---> Running in a27ac5ebfd43
+
+> node@9.11.0 preinstall /app/node_modules/node
+> node installArchSpecificPackage
+
++ node-linux-x64@9.11.0
+added 1 package in 2.901s
+[91mnpm notice created a lockfile as package-lock.json. You should commit this file.
+[0m[91mnpm [0m[91mWARN neo4j@1.0.0 No repository field.
+[0m[91m
+[0madded 101 packages in 8.261s
+Removing intermediate container a27ac5ebfd43
+ ---> 55302478c56e
+Step 5/7 : COPY . /app
+ ---> 6239b38be277
+Step 6/7 : CMD node app.js
+ ---> Running in 1bdbf7ece06d
+Removing intermediate container 1bdbf7ece06d
+ ---> 2d38a555c28a
+Step 7/7 : EXPOSE 3000
+ ---> Running in 9e54b9b2a9da
+Removing intermediate container 9e54b9b2a9da
+ ---> 0ba7adba46b1
+Successfully built 0ba7adba46b1
+Successfully tagged sethc94/neo4j-d3-sample:1.1

@@ -23,6 +23,10 @@ app.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/views/organizations.html'));
 });
 
+app.get('/svg-sample',function(req,res){
+  res.sendFile(path.join(__dirname+'/views/svg-sample.html'));
+});
+
 app.get('/organizationsAPI/:userInput', (req, res)=>{
   // Variables for Query and Data contruction
   var queryInput = req.params.userInput;
@@ -103,7 +107,7 @@ app.get('/test', (req, res)=>{
 
 });
 
-app.listen(3000);
+app.listen(port);
 console.log('Server Started on Port 3000');
 
 module.exports = app;

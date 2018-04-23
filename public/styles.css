@@ -16,7 +16,7 @@
     background-color: #ddd;
 }
 #first_letter {
-    color: #85BAA1
+    color: #85BAA1;
     font-family: verdana;
     font-size: 30px;
     font-style: normal;
@@ -94,4 +94,25 @@
     width: 100%;
     margin: 0;
     padding: 14px;
+  }
+
+  /*styles for SVG Force Graph*/
+
+  .link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 1.5px;
+  }
+
+  .node image {
+    fill: #ccc;
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+
+  text {
+    font: 10px sans-serif;
+    pointer-events: none;
+    stroke: #544E61;
+    stroke-width: 1.5px;
   }
